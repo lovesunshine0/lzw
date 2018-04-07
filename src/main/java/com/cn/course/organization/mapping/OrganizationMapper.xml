@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.course.organization.dao.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.cn.course.organization.Organization">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="businesscode" jdbcType="VARCHAR" property="businesscode" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="experience1" jdbcType="VARCHAR" property="experience1" />
+    <result column="experience2" jdbcType="VARCHAR" property="experience2" />
+    <result column="experience3" jdbcType="VARCHAR" property="experience3" />
+    <result column="experience4" jdbcType="VARCHAR" property="experience4" />
+    <result column="experience5" jdbcType="VARCHAR" property="experience5" />
+    <result column="experience6" jdbcType="VARCHAR" property="experience6" />
+    <result column="experience7" jdbcType="VARCHAR" property="experience7" />
+    <result column="isvalid" jdbcType="INTEGER" property="isvalid" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="qqgroup" jdbcType="VARCHAR" property="qqgroup" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="studentnum" jdbcType="INTEGER" property="studentnum" />
+    <result column="teachernum" jdbcType="INTEGER" property="teachernum" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="assessor" jdbcType="INTEGER" property="assessor" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="timestamp" jdbcType="VARCHAR" property="timestamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, name, introduction, address, businesscode, experience, experience1, experience2, 
+    experience3, experience4, experience5, experience6, experience7, isvalid, phone, 
+    qq, qqgroup, photo, link, studentnum, teachernum, score, assessor, money, timestamp
+  </sql>
+  <select id="selectByExample" parameterType="com.cn.course.organization.OrganizationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from organization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from organization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.course.organization.OrganizationExample">
+    delete from organization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.course.organization.Organization">
+    insert into organization (id, code, name, 
+      introduction, address, businesscode, 
+      experience, experience1, experience2, 
+      experience3, experience4, experience5, 
+      experience6, experience7, isvalid, 
+      phone, qq, qqgroup, 
+      photo, link, studentnum, 
+      teachernum, score, assessor, 
+      money, timestamp)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{businesscode,jdbcType=VARCHAR}, 
+      #{experience,jdbcType=VARCHAR}, #{experience1,jdbcType=VARCHAR}, #{experience2,jdbcType=VARCHAR}, 
+      #{experience3,jdbcType=VARCHAR}, #{experience4,jdbcType=VARCHAR}, #{experience5,jdbcType=VARCHAR}, 
+      #{experience6,jdbcType=VARCHAR}, #{experience7,jdbcType=VARCHAR}, #{isvalid,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{qqgroup,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{studentnum,jdbcType=INTEGER}, 
+      #{teachernum,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{assessor,jdbcType=INTEGER}, 
+      #{money,jdbcType=INTEGER}, #{timestamp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.course.organization.Organization">
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="businesscode != null">
+        businesscode,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="experience1 != null">
+        experience1,
+      </if>
+      <if test="experience2 != null">
+        experience2,
+      </if>
+      <if test="experience3 != null">
+        experience3,
+      </if>
+      <if test="experience4 != null">
+        experience4,
+      </if>
+      <if test="experience5 != null">
+        experience5,
+      </if>
+      <if test="experience6 != null">
+        experience6,
+      </if>
+      <if test="experience7 != null">
+        experience7,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="qqgroup != null">
+        qqgroup,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="studentnum != null">
+        studentnum,
+      </if>
+      <if test="teachernum != null">
+        teachernum,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="assessor != null">
+        assessor,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode != null">
+        #{businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="experience1 != null">
+        #{experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="experience2 != null">
+        #{experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="experience3 != null">
+        #{experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="experience4 != null">
+        #{experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="experience5 != null">
+        #{experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="experience6 != null">
+        #{experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="experience7 != null">
+        #{experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqgroup != null">
+        #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="studentnum != null">
+        #{studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="teachernum != null">
+        #{teachernum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="assessor != null">
+        #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.course.organization.OrganizationExample" resultType="java.lang.Long">
+    select count(*) from organization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update organization
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null">
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businesscode != null">
+        businesscode = #{record.businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience != null">
+        experience = #{record.experience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience1 != null">
+        experience1 = #{record.experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience2 != null">
+        experience2 = #{record.experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience3 != null">
+        experience3 = #{record.experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience4 != null">
+        experience4 = #{record.experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience5 != null">
+        experience5 = #{record.experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience6 != null">
+        experience6 = #{record.experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience7 != null">
+        experience7 = #{record.experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isvalid != null">
+        isvalid = #{record.isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqgroup != null">
+        qqgroup = #{record.qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null">
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link != null">
+        link = #{record.link,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentnum != null">
+        studentnum = #{record.studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.teachernum != null">
+        teachernum = #{record.teachernum,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.assessor != null">
+        assessor = #{record.assessor,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.timestamp != null">
+        timestamp = #{record.timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update organization
+    set id = #{record.id,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      businesscode = #{record.businesscode,jdbcType=VARCHAR},
+      experience = #{record.experience,jdbcType=VARCHAR},
+      experience1 = #{record.experience1,jdbcType=VARCHAR},
+      experience2 = #{record.experience2,jdbcType=VARCHAR},
+      experience3 = #{record.experience3,jdbcType=VARCHAR},
+      experience4 = #{record.experience4,jdbcType=VARCHAR},
+      experience5 = #{record.experience5,jdbcType=VARCHAR},
+      experience6 = #{record.experience6,jdbcType=VARCHAR},
+      experience7 = #{record.experience7,jdbcType=VARCHAR},
+      isvalid = #{record.isvalid,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      qqgroup = #{record.qqgroup,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      link = #{record.link,jdbcType=VARCHAR},
+      studentnum = #{record.studentnum,jdbcType=INTEGER},
+      teachernum = #{record.teachernum,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      assessor = #{record.assessor,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=INTEGER},
+      timestamp = #{record.timestamp,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.course.organization.Organization">
+    update organization
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode != null">
+        businesscode = #{businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="experience1 != null">
+        experience1 = #{experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="experience2 != null">
+        experience2 = #{experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="experience3 != null">
+        experience3 = #{experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="experience4 != null">
+        experience4 = #{experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="experience5 != null">
+        experience5 = #{experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="experience6 != null">
+        experience6 = #{experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="experience7 != null">
+        experience7 = #{experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqgroup != null">
+        qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="studentnum != null">
+        studentnum = #{studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="teachernum != null">
+        teachernum = #{teachernum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="assessor != null">
+        assessor = #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.course.organization.Organization">
+    update organization
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      businesscode = #{businesscode,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      experience1 = #{experience1,jdbcType=VARCHAR},
+      experience2 = #{experience2,jdbcType=VARCHAR},
+      experience3 = #{experience3,jdbcType=VARCHAR},
+      experience4 = #{experience4,jdbcType=VARCHAR},
+      experience5 = #{experience5,jdbcType=VARCHAR},
+      experience6 = #{experience6,jdbcType=VARCHAR},
+      experience7 = #{experience7,jdbcType=VARCHAR},
+      isvalid = #{isvalid,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      studentnum = #{studentnum,jdbcType=INTEGER},
+      teachernum = #{teachernum,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      assessor = #{assessor,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      timestamp = #{timestamp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.course.course.dao.CourseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cn.course.course.CourseInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="createuser" jdbcType="INTEGER" property="createuser" />
+    <result column="updateuser" jdbcType="INTEGER" property="updateuser" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="organizationid" jdbcType="VARCHAR" property="organizationid" />
+    <result column="categoryid" jdbcType="VARCHAR" property="categoryid" />
+    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="isvalid" jdbcType="INTEGER" property="isvalid" />
+    <result column="studentnum" jdbcType="INTEGER" property="studentnum" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="qqgroup" jdbcType="VARCHAR" property="qqgroup" />
+    <result column="isfree" jdbcType="INTEGER" property="isfree" />
+    <result column="charge" jdbcType="INTEGER" property="charge" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="coursetype" jdbcType="VARCHAR" property="coursetype" />
+    <result column="assessor" jdbcType="INTEGER" property="assessor" />
+    <result column="teacherid" jdbcType="INTEGER" property="teacherid" />
+    <result column="timestamp" jdbcType="VARCHAR" property="timestamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, title, createtime, updatetime, createuser, updateuser, introduction, organizationid, 
+    categoryid, starttime, endtime, phone, isvalid, studentnum, score, qqgroup, isfree, 
+    charge, parentid, coursetype, assessor, teacherid, timestamp
+  </sql>
+  <select id="selectByExample" parameterType="com.cn.course.course.CourseInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from courseinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from courseinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from courseinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.course.course.CourseInfoExample">
+    delete from courseinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.course.course.CourseInfo">
+    insert into courseinfo (id, code, title, 
+      createtime, updatetime, createuser, 
+      updateuser, introduction, organizationid, 
+      categoryid, starttime, endtime, 
+      phone, isvalid, studentnum, 
+      score, qqgroup, isfree, 
+      charge, parentid, coursetype, 
+      assessor, teacherid, timestamp
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}, 
+      #{updateuser,jdbcType=INTEGER}, #{introduction,jdbcType=VARCHAR}, #{organizationid,jdbcType=VARCHAR}, 
+      #{categoryid,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{phone,jdbcType=VARCHAR}, #{isvalid,jdbcType=INTEGER}, #{studentnum,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{qqgroup,jdbcType=VARCHAR}, #{isfree,jdbcType=INTEGER}, 
+      #{charge,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{coursetype,jdbcType=VARCHAR}, 
+      #{assessor,jdbcType=INTEGER}, #{teacherid,jdbcType=INTEGER}, #{timestamp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.course.course.CourseInfo">
+    insert into courseinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="createuser != null">
+        createuser,
+      </if>
+      <if test="updateuser != null">
+        updateuser,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="organizationid != null">
+        organizationid,
+      </if>
+      <if test="categoryid != null">
+        categoryid,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="studentnum != null">
+        studentnum,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="qqgroup != null">
+        qqgroup,
+      </if>
+      <if test="isfree != null">
+        isfree,
+      </if>
+      <if test="charge != null">
+        charge,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="coursetype != null">
+        coursetype,
+      </if>
+      <if test="assessor != null">
+        assessor,
+      </if>
+      <if test="teacherid != null">
+        teacherid,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationid != null">
+        #{organizationid,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="studentnum != null">
+        #{studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="qqgroup != null">
+        #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="isfree != null">
+        #{isfree,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        #{charge,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="coursetype != null">
+        #{coursetype,jdbcType=VARCHAR},
+      </if>
+      <if test="assessor != null">
+        #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="teacherid != null">
+        #{teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.course.course.CourseInfoExample" resultType="java.lang.Long">
+    select count(*) from courseinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update courseinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null">
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createuser != null">
+        createuser = #{record.createuser,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateuser != null">
+        updateuser = #{record.updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="record.introduction != null">
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationid != null">
+        organizationid = #{record.organizationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryid != null">
+        categoryid = #{record.categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null">
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isvalid != null">
+        isvalid = #{record.isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentnum != null">
+        studentnum = #{record.studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.qqgroup != null">
+        qqgroup = #{record.qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isfree != null">
+        isfree = #{record.isfree,jdbcType=INTEGER},
+      </if>
+      <if test="record.charge != null">
+        charge = #{record.charge,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentid != null">
+        parentid = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.coursetype != null">
+        coursetype = #{record.coursetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assessor != null">
+        assessor = #{record.assessor,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacherid != null">
+        teacherid = #{record.teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="record.timestamp != null">
+        timestamp = #{record.timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update courseinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      createuser = #{record.createuser,jdbcType=INTEGER},
+      updateuser = #{record.updateuser,jdbcType=INTEGER},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      organizationid = #{record.organizationid,jdbcType=VARCHAR},
+      categoryid = #{record.categoryid,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      isvalid = #{record.isvalid,jdbcType=INTEGER},
+      studentnum = #{record.studentnum,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      qqgroup = #{record.qqgroup,jdbcType=VARCHAR},
+      isfree = #{record.isfree,jdbcType=INTEGER},
+      charge = #{record.charge,jdbcType=INTEGER},
+      parentid = #{record.parentid,jdbcType=INTEGER},
+      coursetype = #{record.coursetype,jdbcType=VARCHAR},
+      assessor = #{record.assessor,jdbcType=INTEGER},
+      teacherid = #{record.teacherid,jdbcType=INTEGER},
+      timestamp = #{record.timestamp,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.course.course.CourseInfo">
+    update courseinfo
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        createuser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updateuser != null">
+        updateuser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationid != null">
+        organizationid = #{organizationid,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        categoryid = #{categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="studentnum != null">
+        studentnum = #{studentnum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="qqgroup != null">
+        qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="isfree != null">
+        isfree = #{isfree,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        charge = #{charge,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="coursetype != null">
+        coursetype = #{coursetype,jdbcType=VARCHAR},
+      </if>
+      <if test="assessor != null">
+        assessor = #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="teacherid != null">
+        teacherid = #{teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.course.course.CourseInfo">
+    update courseinfo
+    set code = #{code,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      createuser = #{createuser,jdbcType=INTEGER},
+      updateuser = #{updateuser,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      organizationid = #{organizationid,jdbcType=VARCHAR},
+      categoryid = #{categoryid,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      isvalid = #{isvalid,jdbcType=INTEGER},
+      studentnum = #{studentnum,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      isfree = #{isfree,jdbcType=INTEGER},
+      charge = #{charge,jdbcType=INTEGER},
+      parentid = #{parentid,jdbcType=INTEGER},
+      coursetype = #{coursetype,jdbcType=VARCHAR},
+      assessor = #{assessor,jdbcType=INTEGER},
+      teacherid = #{teacherid,jdbcType=INTEGER},
+      timestamp = #{timestamp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

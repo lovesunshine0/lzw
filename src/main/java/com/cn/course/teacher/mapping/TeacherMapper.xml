@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.course.teacher.dao.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.cn.course.teacher.Teacher">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="identificationcard" jdbcType="VARCHAR" property="identificationcard" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="phone2" jdbcType="VARCHAR" property="phone2" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="isvalid" jdbcType="INTEGER" property="isvalid" />
+    <result column="education1" jdbcType="VARCHAR" property="education1" />
+    <result column="education2" jdbcType="VARCHAR" property="education2" />
+    <result column="education3" jdbcType="VARCHAR" property="education3" />
+    <result column="education4" jdbcType="VARCHAR" property="education4" />
+    <result column="education5" jdbcType="VARCHAR" property="education5" />
+    <result column="education6" jdbcType="VARCHAR" property="education6" />
+    <result column="education7" jdbcType="VARCHAR" property="education7" />
+    <result column="experience1" jdbcType="VARCHAR" property="experience1" />
+    <result column="experience2" jdbcType="VARCHAR" property="experience2" />
+    <result column="experience3" jdbcType="VARCHAR" property="experience3" />
+    <result column="experience4" jdbcType="VARCHAR" property="experience4" />
+    <result column="experience5" jdbcType="VARCHAR" property="experience5" />
+    <result column="experience6" jdbcType="VARCHAR" property="experience6" />
+    <result column="experience7" jdbcType="VARCHAR" property="experience7" />
+    <result column="fulltime" jdbcType="INTEGER" property="fulltime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="qqgroup" jdbcType="VARCHAR" property="qqgroup" />
+    <result column="blog" jdbcType="VARCHAR" property="blog" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="organizationid" jdbcType="INTEGER" property="organizationid" />
+    <result column="assessor" jdbcType="INTEGER" property="assessor" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="timestamp" jdbcType="VARCHAR" property="timestamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, education, experience, introduction, address, identificationcard, phone, 
+    phone2, sex, age, isvalid, education1, education2, education3, education4, education5, 
+    education6, education7, experience1, experience2, experience3, experience4, experience5, 
+    experience6, experience7, fulltime, createtime, updatetime, photo, wechat, qq, qqgroup, 
+    blog, password, code, organizationid, assessor, money, timestamp
+  </sql>
+  <select id="selectByExample" parameterType="com.cn.course.teacher.TeacherExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from teacher
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.course.teacher.TeacherExample">
+    delete from teacher
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.course.teacher.Teacher">
+    insert into teacher (id, name, education, 
+      experience, introduction, address, 
+      identificationcard, phone, phone2, 
+      sex, age, isvalid, 
+      education1, education2, education3, 
+      education4, education5, education6, 
+      education7, experience1, experience2, 
+      experience3, experience4, experience5, 
+      experience6, experience7, fulltime, 
+      createtime, updatetime, photo, 
+      wechat, qq, qqgroup, 
+      blog, password, code, 
+      organizationid, assessor, money, 
+      timestamp)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{experience,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{identificationcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{phone2,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{isvalid,jdbcType=INTEGER}, 
+      #{education1,jdbcType=VARCHAR}, #{education2,jdbcType=VARCHAR}, #{education3,jdbcType=VARCHAR}, 
+      #{education4,jdbcType=VARCHAR}, #{education5,jdbcType=VARCHAR}, #{education6,jdbcType=VARCHAR}, 
+      #{education7,jdbcType=VARCHAR}, #{experience1,jdbcType=VARCHAR}, #{experience2,jdbcType=VARCHAR}, 
+      #{experience3,jdbcType=VARCHAR}, #{experience4,jdbcType=VARCHAR}, #{experience5,jdbcType=VARCHAR}, 
+      #{experience6,jdbcType=VARCHAR}, #{experience7,jdbcType=VARCHAR}, #{fulltime,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{qqgroup,jdbcType=VARCHAR}, 
+      #{blog,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{organizationid,jdbcType=INTEGER}, #{assessor,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, 
+      #{timestamp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.course.teacher.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="identificationcard != null">
+        identificationcard,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="phone2 != null">
+        phone2,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="education1 != null">
+        education1,
+      </if>
+      <if test="education2 != null">
+        education2,
+      </if>
+      <if test="education3 != null">
+        education3,
+      </if>
+      <if test="education4 != null">
+        education4,
+      </if>
+      <if test="education5 != null">
+        education5,
+      </if>
+      <if test="education6 != null">
+        education6,
+      </if>
+      <if test="education7 != null">
+        education7,
+      </if>
+      <if test="experience1 != null">
+        experience1,
+      </if>
+      <if test="experience2 != null">
+        experience2,
+      </if>
+      <if test="experience3 != null">
+        experience3,
+      </if>
+      <if test="experience4 != null">
+        experience4,
+      </if>
+      <if test="experience5 != null">
+        experience5,
+      </if>
+      <if test="experience6 != null">
+        experience6,
+      </if>
+      <if test="experience7 != null">
+        experience7,
+      </if>
+      <if test="fulltime != null">
+        fulltime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="qqgroup != null">
+        qqgroup,
+      </if>
+      <if test="blog != null">
+        blog,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="organizationid != null">
+        organizationid,
+      </if>
+      <if test="assessor != null">
+        assessor,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationcard != null">
+        #{identificationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="education1 != null">
+        #{education1,jdbcType=VARCHAR},
+      </if>
+      <if test="education2 != null">
+        #{education2,jdbcType=VARCHAR},
+      </if>
+      <if test="education3 != null">
+        #{education3,jdbcType=VARCHAR},
+      </if>
+      <if test="education4 != null">
+        #{education4,jdbcType=VARCHAR},
+      </if>
+      <if test="education5 != null">
+        #{education5,jdbcType=VARCHAR},
+      </if>
+      <if test="education6 != null">
+        #{education6,jdbcType=VARCHAR},
+      </if>
+      <if test="education7 != null">
+        #{education7,jdbcType=VARCHAR},
+      </if>
+      <if test="experience1 != null">
+        #{experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="experience2 != null">
+        #{experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="experience3 != null">
+        #{experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="experience4 != null">
+        #{experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="experience5 != null">
+        #{experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="experience6 != null">
+        #{experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="experience7 != null">
+        #{experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="fulltime != null">
+        #{fulltime,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqgroup != null">
+        #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null">
+        #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationid != null">
+        #{organizationid,jdbcType=INTEGER},
+      </if>
+      <if test="assessor != null">
+        #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.course.teacher.TeacherExample" resultType="java.lang.Long">
+    select count(*) from teacher
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update teacher
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null">
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience != null">
+        experience = #{record.experience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null">
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identificationcard != null">
+        identificationcard = #{record.identificationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone2 != null">
+        phone2 = #{record.phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.isvalid != null">
+        isvalid = #{record.isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="record.education1 != null">
+        education1 = #{record.education1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education2 != null">
+        education2 = #{record.education2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education3 != null">
+        education3 = #{record.education3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education4 != null">
+        education4 = #{record.education4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education5 != null">
+        education5 = #{record.education5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education6 != null">
+        education6 = #{record.education6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education7 != null">
+        education7 = #{record.education7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience1 != null">
+        experience1 = #{record.experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience2 != null">
+        experience2 = #{record.experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience3 != null">
+        experience3 = #{record.experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience4 != null">
+        experience4 = #{record.experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience5 != null">
+        experience5 = #{record.experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience6 != null">
+        experience6 = #{record.experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience7 != null">
+        experience7 = #{record.experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fulltime != null">
+        fulltime = #{record.fulltime,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null">
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.photo != null">
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null">
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqgroup != null">
+        qqgroup = #{record.qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blog != null">
+        blog = #{record.blog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationid != null">
+        organizationid = #{record.organizationid,jdbcType=INTEGER},
+      </if>
+      <if test="record.assessor != null">
+        assessor = #{record.assessor,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.timestamp != null">
+        timestamp = #{record.timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update teacher
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      experience = #{record.experience,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      identificationcard = #{record.identificationcard,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      phone2 = #{record.phone2,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      isvalid = #{record.isvalid,jdbcType=INTEGER},
+      education1 = #{record.education1,jdbcType=VARCHAR},
+      education2 = #{record.education2,jdbcType=VARCHAR},
+      education3 = #{record.education3,jdbcType=VARCHAR},
+      education4 = #{record.education4,jdbcType=VARCHAR},
+      education5 = #{record.education5,jdbcType=VARCHAR},
+      education6 = #{record.education6,jdbcType=VARCHAR},
+      education7 = #{record.education7,jdbcType=VARCHAR},
+      experience1 = #{record.experience1,jdbcType=VARCHAR},
+      experience2 = #{record.experience2,jdbcType=VARCHAR},
+      experience3 = #{record.experience3,jdbcType=VARCHAR},
+      experience4 = #{record.experience4,jdbcType=VARCHAR},
+      experience5 = #{record.experience5,jdbcType=VARCHAR},
+      experience6 = #{record.experience6,jdbcType=VARCHAR},
+      experience7 = #{record.experience7,jdbcType=VARCHAR},
+      fulltime = #{record.fulltime,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      qqgroup = #{record.qqgroup,jdbcType=VARCHAR},
+      blog = #{record.blog,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      organizationid = #{record.organizationid,jdbcType=INTEGER},
+      assessor = #{record.assessor,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=INTEGER},
+      timestamp = #{record.timestamp,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.course.teacher.Teacher">
+    update teacher
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationcard != null">
+        identificationcard = #{identificationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="education1 != null">
+        education1 = #{education1,jdbcType=VARCHAR},
+      </if>
+      <if test="education2 != null">
+        education2 = #{education2,jdbcType=VARCHAR},
+      </if>
+      <if test="education3 != null">
+        education3 = #{education3,jdbcType=VARCHAR},
+      </if>
+      <if test="education4 != null">
+        education4 = #{education4,jdbcType=VARCHAR},
+      </if>
+      <if test="education5 != null">
+        education5 = #{education5,jdbcType=VARCHAR},
+      </if>
+      <if test="education6 != null">
+        education6 = #{education6,jdbcType=VARCHAR},
+      </if>
+      <if test="education7 != null">
+        education7 = #{education7,jdbcType=VARCHAR},
+      </if>
+      <if test="experience1 != null">
+        experience1 = #{experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="experience2 != null">
+        experience2 = #{experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="experience3 != null">
+        experience3 = #{experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="experience4 != null">
+        experience4 = #{experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="experience5 != null">
+        experience5 = #{experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="experience6 != null">
+        experience6 = #{experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="experience7 != null">
+        experience7 = #{experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="fulltime != null">
+        fulltime = #{fulltime,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqgroup != null">
+        qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null">
+        blog = #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationid != null">
+        organizationid = #{organizationid,jdbcType=INTEGER},
+      </if>
+      <if test="assessor != null">
+        assessor = #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.course.teacher.Teacher">
+    update teacher
+    set name = #{name,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      identificationcard = #{identificationcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      isvalid = #{isvalid,jdbcType=INTEGER},
+      education1 = #{education1,jdbcType=VARCHAR},
+      education2 = #{education2,jdbcType=VARCHAR},
+      education3 = #{education3,jdbcType=VARCHAR},
+      education4 = #{education4,jdbcType=VARCHAR},
+      education5 = #{education5,jdbcType=VARCHAR},
+      education6 = #{education6,jdbcType=VARCHAR},
+      education7 = #{education7,jdbcType=VARCHAR},
+      experience1 = #{experience1,jdbcType=VARCHAR},
+      experience2 = #{experience2,jdbcType=VARCHAR},
+      experience3 = #{experience3,jdbcType=VARCHAR},
+      experience4 = #{experience4,jdbcType=VARCHAR},
+      experience5 = #{experience5,jdbcType=VARCHAR},
+      experience6 = #{experience6,jdbcType=VARCHAR},
+      experience7 = #{experience7,jdbcType=VARCHAR},
+      fulltime = #{fulltime,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      organizationid = #{organizationid,jdbcType=INTEGER},
+      assessor = #{assessor,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      timestamp = #{timestamp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.cn.course.teacher.Teacher">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="identificationcard" jdbcType="VARCHAR" property="identificationcard" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="phone2" jdbcType="VARCHAR" property="phone2" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="isvalid" jdbcType="INTEGER" property="isvalid" />
+    <result column="education1" jdbcType="VARCHAR" property="education1" />
+    <result column="education2" jdbcType="VARCHAR" property="education2" />
+    <result column="education3" jdbcType="VARCHAR" property="education3" />
+    <result column="education4" jdbcType="VARCHAR" property="education4" />
+    <result column="education5" jdbcType="VARCHAR" property="education5" />
+    <result column="education6" jdbcType="VARCHAR" property="education6" />
+    <result column="education7" jdbcType="VARCHAR" property="education7" />
+    <result column="experience1" jdbcType="VARCHAR" property="experience1" />
+    <result column="experience2" jdbcType="VARCHAR" property="experience2" />
+    <result column="experience3" jdbcType="VARCHAR" property="experience3" />
+    <result column="experience4" jdbcType="VARCHAR" property="experience4" />
+    <result column="experience5" jdbcType="VARCHAR" property="experience5" />
+    <result column="experience6" jdbcType="VARCHAR" property="experience6" />
+    <result column="experience7" jdbcType="VARCHAR" property="experience7" />
+    <result column="fulltime" jdbcType="INTEGER" property="fulltime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="qqgroup" jdbcType="VARCHAR" property="qqgroup" />
+    <result column="blog" jdbcType="VARCHAR" property="blog" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="organizationid" jdbcType="INTEGER" property="organizationid" />
+    <result column="assessor" jdbcType="INTEGER" property="assessor" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="timestamp" jdbcType="VARCHAR" property="timestamp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, education, experience, introduction, address, identificationcard, phone, 
+    phone2, sex, age, isvalid, education1, education2, education3, education4, education5, 
+    education6, education7, experience1, experience2, experience3, experience4, experience5, 
+    experience6, experience7, fulltime, createtime, updatetime, photo, wechat, qq, qqgroup, 
+    blog, password, code, organizationid, assessor, money, timestamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.course.teacher.Teacher">
+    insert into teacher (id, name, education, 
+      experience, introduction, address, 
+      identificationcard, phone, phone2, 
+      sex, age, isvalid, 
+      education1, education2, education3, 
+      education4, education5, education6, 
+      education7, experience1, experience2, 
+      experience3, experience4, experience5, 
+      experience6, experience7, fulltime, 
+      createtime, updatetime, photo, 
+      wechat, qq, qqgroup, 
+      blog, password, code, 
+      organizationid, assessor, money, 
+      timestamp)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{experience,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{identificationcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{phone2,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{isvalid,jdbcType=INTEGER}, 
+      #{education1,jdbcType=VARCHAR}, #{education2,jdbcType=VARCHAR}, #{education3,jdbcType=VARCHAR}, 
+      #{education4,jdbcType=VARCHAR}, #{education5,jdbcType=VARCHAR}, #{education6,jdbcType=VARCHAR}, 
+      #{education7,jdbcType=VARCHAR}, #{experience1,jdbcType=VARCHAR}, #{experience2,jdbcType=VARCHAR}, 
+      #{experience3,jdbcType=VARCHAR}, #{experience4,jdbcType=VARCHAR}, #{experience5,jdbcType=VARCHAR}, 
+      #{experience6,jdbcType=VARCHAR}, #{experience7,jdbcType=VARCHAR}, #{fulltime,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{qqgroup,jdbcType=VARCHAR}, 
+      #{blog,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{organizationid,jdbcType=INTEGER}, #{assessor,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, 
+      #{timestamp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.course.teacher.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="identificationcard != null">
+        identificationcard,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="phone2 != null">
+        phone2,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="education1 != null">
+        education1,
+      </if>
+      <if test="education2 != null">
+        education2,
+      </if>
+      <if test="education3 != null">
+        education3,
+      </if>
+      <if test="education4 != null">
+        education4,
+      </if>
+      <if test="education5 != null">
+        education5,
+      </if>
+      <if test="education6 != null">
+        education6,
+      </if>
+      <if test="education7 != null">
+        education7,
+      </if>
+      <if test="experience1 != null">
+        experience1,
+      </if>
+      <if test="experience2 != null">
+        experience2,
+      </if>
+      <if test="experience3 != null">
+        experience3,
+      </if>
+      <if test="experience4 != null">
+        experience4,
+      </if>
+      <if test="experience5 != null">
+        experience5,
+      </if>
+      <if test="experience6 != null">
+        experience6,
+      </if>
+      <if test="experience7 != null">
+        experience7,
+      </if>
+      <if test="fulltime != null">
+        fulltime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="qqgroup != null">
+        qqgroup,
+      </if>
+      <if test="blog != null">
+        blog,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="organizationid != null">
+        organizationid,
+      </if>
+      <if test="assessor != null">
+        assessor,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationcard != null">
+        #{identificationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="education1 != null">
+        #{education1,jdbcType=VARCHAR},
+      </if>
+      <if test="education2 != null">
+        #{education2,jdbcType=VARCHAR},
+      </if>
+      <if test="education3 != null">
+        #{education3,jdbcType=VARCHAR},
+      </if>
+      <if test="education4 != null">
+        #{education4,jdbcType=VARCHAR},
+      </if>
+      <if test="education5 != null">
+        #{education5,jdbcType=VARCHAR},
+      </if>
+      <if test="education6 != null">
+        #{education6,jdbcType=VARCHAR},
+      </if>
+      <if test="education7 != null">
+        #{education7,jdbcType=VARCHAR},
+      </if>
+      <if test="experience1 != null">
+        #{experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="experience2 != null">
+        #{experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="experience3 != null">
+        #{experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="experience4 != null">
+        #{experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="experience5 != null">
+        #{experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="experience6 != null">
+        #{experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="experience7 != null">
+        #{experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="fulltime != null">
+        #{fulltime,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqgroup != null">
+        #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null">
+        #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationid != null">
+        #{organizationid,jdbcType=INTEGER},
+      </if>
+      <if test="assessor != null">
+        #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.course.teacher.Teacher">
+    update teacher
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationcard != null">
+        identificationcard = #{identificationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="education1 != null">
+        education1 = #{education1,jdbcType=VARCHAR},
+      </if>
+      <if test="education2 != null">
+        education2 = #{education2,jdbcType=VARCHAR},
+      </if>
+      <if test="education3 != null">
+        education3 = #{education3,jdbcType=VARCHAR},
+      </if>
+      <if test="education4 != null">
+        education4 = #{education4,jdbcType=VARCHAR},
+      </if>
+      <if test="education5 != null">
+        education5 = #{education5,jdbcType=VARCHAR},
+      </if>
+      <if test="education6 != null">
+        education6 = #{education6,jdbcType=VARCHAR},
+      </if>
+      <if test="education7 != null">
+        education7 = #{education7,jdbcType=VARCHAR},
+      </if>
+      <if test="experience1 != null">
+        experience1 = #{experience1,jdbcType=VARCHAR},
+      </if>
+      <if test="experience2 != null">
+        experience2 = #{experience2,jdbcType=VARCHAR},
+      </if>
+      <if test="experience3 != null">
+        experience3 = #{experience3,jdbcType=VARCHAR},
+      </if>
+      <if test="experience4 != null">
+        experience4 = #{experience4,jdbcType=VARCHAR},
+      </if>
+      <if test="experience5 != null">
+        experience5 = #{experience5,jdbcType=VARCHAR},
+      </if>
+      <if test="experience6 != null">
+        experience6 = #{experience6,jdbcType=VARCHAR},
+      </if>
+      <if test="experience7 != null">
+        experience7 = #{experience7,jdbcType=VARCHAR},
+      </if>
+      <if test="fulltime != null">
+        fulltime = #{fulltime,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqgroup != null">
+        qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null">
+        blog = #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationid != null">
+        organizationid = #{organizationid,jdbcType=INTEGER},
+      </if>
+      <if test="assessor != null">
+        assessor = #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.course.teacher.Teacher">
+    update teacher
+    set name = #{name,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      identificationcard = #{identificationcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      isvalid = #{isvalid,jdbcType=INTEGER},
+      education1 = #{education1,jdbcType=VARCHAR},
+      education2 = #{education2,jdbcType=VARCHAR},
+      education3 = #{education3,jdbcType=VARCHAR},
+      education4 = #{education4,jdbcType=VARCHAR},
+      education5 = #{education5,jdbcType=VARCHAR},
+      education6 = #{education6,jdbcType=VARCHAR},
+      education7 = #{education7,jdbcType=VARCHAR},
+      experience1 = #{experience1,jdbcType=VARCHAR},
+      experience2 = #{experience2,jdbcType=VARCHAR},
+      experience3 = #{experience3,jdbcType=VARCHAR},
+      experience4 = #{experience4,jdbcType=VARCHAR},
+      experience5 = #{experience5,jdbcType=VARCHAR},
+      experience6 = #{experience6,jdbcType=VARCHAR},
+      experience7 = #{experience7,jdbcType=VARCHAR},
+      fulltime = #{fulltime,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      qqgroup = #{qqgroup,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      organizationid = #{organizationid,jdbcType=INTEGER},
+      assessor = #{assessor,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      timestamp = #{timestamp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
