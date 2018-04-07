@@ -1,3 +1,20 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : gejigang
+Source Server Version : 50639
+Source Host           : 127.0.0.1:3306
+Source Database       : course
+
+Target Server Type    : MYSQL
+Target Server Version : 50639
+File Encoding         : 65001
+
+Date: 2018-04-07 22:41:03
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
 -- ----------------------------
 -- Table structure for bill
 -- ----------------------------
@@ -185,9 +202,6 @@ CREATE TABLE `studentcoupon` (
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生拥有优惠券信息表';
 
-
-
-
 -- ----------------------------
 -- Table structure for studentfollowcourse
 -- ----------------------------
@@ -201,9 +215,6 @@ CREATE TABLE `studentfollowcourse` (
   `follow` int(1) DEFAULT NULL COMMENT '是否关注老师',
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生关注课程信息列表';
-
-
-SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for studentfolloworganization
@@ -219,8 +230,6 @@ CREATE TABLE `studentfolloworganization` (
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生关注学习(机构信息列表)';
 
-SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for studentfollowteacher
 -- ----------------------------
@@ -234,9 +243,6 @@ CREATE TABLE `studentfollowteacher` (
   `follow` int(1) DEFAULT NULL COMMENT '是否关注老师',
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生关注老师信息列表';
-
-
-SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for teacher
@@ -286,10 +292,6 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='老师信息表';
 
-
-
- 
-
 -- ----------------------------
 -- Table structure for userinfo
 -- ----------------------------
@@ -304,4 +306,3 @@ CREATE TABLE `userinfo` (
   `timestamp` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户信息表';
-
