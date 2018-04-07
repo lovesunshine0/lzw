@@ -3,8 +3,11 @@ package com.cn.course.serialnum.dao;
 import com.cn.course.serialnum.Serialnum;
 import com.cn.course.serialnum.SerialnumExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface SerialnumMapper {
     long countByExample(SerialnumExample example);
 

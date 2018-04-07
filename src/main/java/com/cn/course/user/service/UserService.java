@@ -18,7 +18,7 @@ public class UserService {
 
     @Resource
     private UserMapper userMapper;
-    @Resource
+    @Autowired
     SerialNumService serialNumService;
 
 
