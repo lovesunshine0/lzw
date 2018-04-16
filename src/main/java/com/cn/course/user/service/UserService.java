@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @Service
@@ -26,7 +25,8 @@ public class UserService {
         UserExample userExample = new UserExample();
         UserExample.Criteria c = userExample.createCriteria();
         c.andNameEqualTo(username);
-        c.andPasswordEqualTo(password);
+        String encryptpassword = Md5Util.MD5(password);
+        c.andPasswordEqualTo(encryptpassword);
         c.andIsvalidEqualTo(1);
         List<User> list = userMapper.selectByExample(userExample);
         if (list == null || list.isEmpty()) {

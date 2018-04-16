@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 
 public class Md5Util {
     public static void main(String[] args) {
-        String pwd = MD5("1");
+        String pwd = MD5("123456");
         System.out.println(pwd);
     }
 

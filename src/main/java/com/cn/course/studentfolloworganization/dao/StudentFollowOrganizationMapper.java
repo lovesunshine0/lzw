@@ -3,8 +3,11 @@ package com.cn.course.studentfolloworganization.dao;
 import com.cn.course.studentfolloworganization.StudentFollowOrganization;
 import com.cn.course.studentfolloworganization.StudentFollowOrganizationExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface StudentFollowOrganizationMapper {
     long countByExample(StudentFollowOrganizationExample example);
 

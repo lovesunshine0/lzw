@@ -3,8 +3,11 @@ package com.cn.course.teacher.dao;
 import com.cn.course.teacher.Teacher;
 import com.cn.course.teacher.TeacherExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface TeacherMapper {
     long countByExample(TeacherExample example);
 

@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -42,16 +43,16 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
         <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-tx</artifactId>-->
-            <!--<version>5.0.4.RELEASE</version>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-tx</artifactId>-->
+        <!--<version>5.0.4.RELEASE</version>-->
         <!--</dependency>-->
 
-        <!--<dependency>-->
-        <!--<groupId>com.alibaba</groupId>-->
-        <!--<artifactId>druid</artifactId>-->
-        <!--<version>1.1.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.0</version>
+        </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -83,19 +84,36 @@
 
 
     <!--<build>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<fork>true</fork>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--<configuration>-->
+    <!--<fork>true</fork>-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
     <!--</build>-->
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -105,7 +123,9 @@
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
                 </configuration>
+
             </plugin>
         </plugins>
     </build>
+
 </project>
