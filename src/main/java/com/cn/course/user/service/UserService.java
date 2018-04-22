@@ -8,6 +8,7 @@ import com.cn.course.util.Md5Util;
 import com.cn.course.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -58,6 +59,7 @@ public class UserService {
         return list;
     }
 
+    @Transactional
     public int saveUserinfo(User user) {
         user.setId(0);
         String password = user.getPassword();
