@@ -6,7 +6,9 @@ import com.cn.course.course.dao.CourseInfoMapper;
 import com.cn.course.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import java.util.List;
  */
 @Service
 public class CourseService {
-    @Autowired
+    @Resource
     CourseInfoMapper courseInfoMapper;
 
 
@@ -28,6 +30,13 @@ public class CourseService {
         return courseInfoMapper.selectByPrimaryKey(courseid);
     }
 
+
+    public List<CourseInfo> findCourseByIds(List<Integer> courseids){
+        CourseInfoExample courseInfoExample = new CourseInfoExample();
+        CourseInfoExample.Criteria c = courseInfoExample.createCriteria();
+        c.andIdIn(courseids);
+        return courseInfoMapper.selectByExample(courseInfoExample);
+    }
     public List<CourseInfo> findCourseByOrg(String organizationid) {
         CourseInfoExample courseInfoExample = new CourseInfoExample();
         CourseInfoExample.Criteria c = courseInfoExample.createCriteria();

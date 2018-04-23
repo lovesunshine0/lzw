@@ -3,8 +3,11 @@ package com.cn.course.organization.dao;
 import com.cn.course.organization.Organization;
 import com.cn.course.organization.OrganizationExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface OrganizationMapper {
     long countByExample(OrganizationExample example);
 

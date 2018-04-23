@@ -3,8 +3,11 @@ package com.cn.course.bill.dao;
 import com.cn.course.bill.Bill;
 import com.cn.course.bill.BillExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface BillMapper {
     long countByExample(BillExample example);
 

@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 public class BillService {
 
-    @Autowired
+    @Resource
     BillMapper billMapper;
 
     public int saveBill(Bill bill, Integer userid) {

@@ -7,11 +7,12 @@ import com.cn.course.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class StudentBuyCourseService {
-    @Autowired
+    @Resource
     StudentBuyCourseMapper mapper;
 
     public int saveStudentBuyCourse(StudentBuyCourse studentBuyCourse){
