@@ -21,6 +21,10 @@ public class StudentBuyCourse {
 
     private String timestamp;
 
+    private Integer billid;
+
+    private Integer isvalid;
+
     public Integer getStudentid() {
         return studentid;
     }
@@ -99,5 +103,21 @@ public class StudentBuyCourse {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp == null ? null : timestamp.trim();
+    }
+
+    public Integer getBillid() {
+        return billid;
+    }
+
+    public void setBillid(Integer billid) {
+        this.billid = billid;
+    }
+
+    public Integer getIsvalid() {
+        return isvalid;
+    }
+
+    public void setIsvalid(Integer isvalid) {
+        this.isvalid = isvalid;
     }
 }

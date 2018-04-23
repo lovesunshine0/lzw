@@ -1104,6 +1104,66 @@ public class BillExample {
             addCriterion("usertype not between", value1, value2, "usertype");
             return (Criteria) this;
         }
+
+        public Criteria andCouponidIsNull() {
+            addCriterion("couponid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidIsNotNull() {
+            addCriterion("couponid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidEqualTo(Integer value) {
+            addCriterion("couponid =", value, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidNotEqualTo(Integer value) {
+            addCriterion("couponid <>", value, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidGreaterThan(Integer value) {
+            addCriterion("couponid >", value, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("couponid >=", value, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidLessThan(Integer value) {
+            addCriterion("couponid <", value, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidLessThanOrEqualTo(Integer value) {
+            addCriterion("couponid <=", value, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidIn(List<Integer> values) {
+            addCriterion("couponid in", values, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidNotIn(List<Integer> values) {
+            addCriterion("couponid not in", values, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidBetween(Integer value1, Integer value2) {
+            addCriterion("couponid between", value1, value2, "couponid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCouponidNotBetween(Integer value1, Integer value2) {
+            addCriterion("couponid not between", value1, value2, "couponid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

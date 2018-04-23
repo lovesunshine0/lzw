@@ -35,6 +35,8 @@ public class Bill {
 
     private Integer usertype;
 
+    private Integer couponid;
+
     public Integer getId() {
         return id;
     }
@@ -161,5 +163,13 @@ public class Bill {
 
     public void setUsertype(Integer usertype) {
         this.usertype = usertype;
+    }
+
+    public Integer getCouponid() {
+        return couponid;
+    }
+
+    public void setCouponid(Integer couponid) {
+        this.couponid = couponid;
     }
 }

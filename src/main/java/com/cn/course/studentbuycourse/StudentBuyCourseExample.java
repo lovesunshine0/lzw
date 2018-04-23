@@ -733,6 +733,126 @@ public class StudentBuyCourseExample {
             addCriterion("timestamp not between", value1, value2, "timestamp");
             return (Criteria) this;
         }
+
+        public Criteria andBillidIsNull() {
+            addCriterion("billid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidIsNotNull() {
+            addCriterion("billid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidEqualTo(Integer value) {
+            addCriterion("billid =", value, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidNotEqualTo(Integer value) {
+            addCriterion("billid <>", value, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidGreaterThan(Integer value) {
+            addCriterion("billid >", value, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("billid >=", value, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidLessThan(Integer value) {
+            addCriterion("billid <", value, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidLessThanOrEqualTo(Integer value) {
+            addCriterion("billid <=", value, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidIn(List<Integer> values) {
+            addCriterion("billid in", values, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidNotIn(List<Integer> values) {
+            addCriterion("billid not in", values, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidBetween(Integer value1, Integer value2) {
+            addCriterion("billid between", value1, value2, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBillidNotBetween(Integer value1, Integer value2) {
+            addCriterion("billid not between", value1, value2, "billid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidIsNull() {
+            addCriterion("isvalid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidIsNotNull() {
+            addCriterion("isvalid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidEqualTo(Integer value) {
+            addCriterion("isvalid =", value, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidNotEqualTo(Integer value) {
+            addCriterion("isvalid <>", value, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidGreaterThan(Integer value) {
+            addCriterion("isvalid >", value, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isvalid >=", value, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidLessThan(Integer value) {
+            addCriterion("isvalid <", value, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidLessThanOrEqualTo(Integer value) {
+            addCriterion("isvalid <=", value, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidIn(List<Integer> values) {
+            addCriterion("isvalid in", values, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidNotIn(List<Integer> values) {
+            addCriterion("isvalid not in", values, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidBetween(Integer value1, Integer value2) {
+            addCriterion("isvalid between", value1, value2, "isvalid");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsvalidNotBetween(Integer value1, Integer value2) {
+            addCriterion("isvalid not between", value1, value2, "isvalid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

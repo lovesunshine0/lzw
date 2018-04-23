@@ -7,12 +7,6 @@ public class StudentFollowOrganization {
 
     private String remark;
 
-    private String comment;
-
-    private Integer score;
-
-    private Integer follow;
-
     private String timestamp;
 
     public Integer getStudentid() {
@@ -37,30 +31,6 @@ public class StudentFollowOrganization {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment == null ? null : comment.trim();
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Integer getFollow() {
-        return follow;
-    }
-
-    public void setFollow(Integer follow) {
-        this.follow = follow;
     }
 
     public String getTimestamp() {

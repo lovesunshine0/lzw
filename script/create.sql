@@ -36,6 +36,7 @@ CREATE TABLE `bill` (
   `timestamp` varchar(30) DEFAULT NULL,
   `isconsume` int(11) DEFAULT NULL COMMENT '1消费,2充值',
   `usertype` int(11) DEFAULT NULL COMMENT '1学生,2老师,3机构.4系统管理员',
+  `couponid` int(11) DEFAULT NULL COMMENT '优惠id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='账单信息表';
 
@@ -188,7 +189,9 @@ CREATE TABLE `studentbuycourse` (
   `couponid` int(11) DEFAULT NULL COMMENT '优惠券id',
   `money` int(11) DEFAULT NULL COMMENT '付钱',
   `paytype` int(11) DEFAULT NULL COMMENT '支付方式',
-  `timestamp` varchar(30) DEFAULT NULL
+  `timestamp` varchar(30) DEFAULT NULL,
+  `billid` int(11) NOT NULL,
+  `isvalid` int(1) NOT NULL COMMENT '是否有效(0有效，1无效)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生已经购买课程表';
 
 -- ----------------------------
@@ -210,9 +213,6 @@ CREATE TABLE `studentfollowcourse` (
   `studentid` int(11) NOT NULL COMMENT '学生id',
   `courseid` int(11) NOT NULL COMMENT '大课id',
   `remark` varchar(255) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL COMMENT '评论',
-  `score` int(3) DEFAULT NULL COMMENT '评分',
-  `follow` int(1) DEFAULT NULL COMMENT '是否关注老师',
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生关注课程信息列表';
 
@@ -224,9 +224,6 @@ CREATE TABLE `studentfolloworganization` (
   `studentid` int(11) NOT NULL COMMENT '学生id',
   `organizationid` int(11) NOT NULL COMMENT '机构id',
   `remark` varchar(255) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL COMMENT '评论',
-  `score` int(3) DEFAULT NULL COMMENT '评分',
-  `follow` int(1) DEFAULT NULL COMMENT '是否关注老师',
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生关注学习(机构信息列表)';
 
@@ -238,9 +235,6 @@ CREATE TABLE `studentfollowteacher` (
   `studentid` int(11) NOT NULL COMMENT '学生id',
   `teacherid` int(11) NOT NULL COMMENT '老师id',
   `remark` varchar(255) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL COMMENT '评论',
-  `score` int(3) DEFAULT NULL COMMENT '评分',
-  `follow` int(1) DEFAULT NULL COMMENT '是否关注老师',
   `timestamp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生关注老师信息列表';
 
