@@ -2,9 +2,11 @@ package com.cn.course.coupon.dao;
 
 import com.cn.course.coupon.Coupon;
 import com.cn.course.coupon.CouponExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+@Mapper
 public interface CouponMapper {
     long countByExample(CouponExample example);
 

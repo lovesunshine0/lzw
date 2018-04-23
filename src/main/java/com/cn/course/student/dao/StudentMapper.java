@@ -2,9 +2,12 @@ package com.cn.course.student.dao;
 
 import com.cn.course.student.Student;
 import com.cn.course.student.StudentExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface StudentMapper {
     long countByExample(StudentExample example);
 

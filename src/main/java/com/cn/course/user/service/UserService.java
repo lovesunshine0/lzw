@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
     @Autowired
     SerialNumService serialNumService;
@@ -38,6 +38,7 @@ public class UserService {
             return u;
         }
     }
+
     public User findUserinfo(String username) {
         UserExample userExample = new UserExample();
         UserExample.Criteria c = userExample.createCriteria();
@@ -51,9 +52,10 @@ public class UserService {
             return u;
         }
     }
+
     public List<User> findAllUserinfo() {
         List<User> list = userMapper.selectByExample(null);
-        for(User u:list){
+        for (User u : list) {
             u.setPassword("");
         }
         return list;

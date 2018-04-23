@@ -10,6 +10,11 @@ public class LoginController {
 
     @RequestMapping(value = "login",method = RequestMethod.GET)
     public String login(@RequestParam(value = "username" ,required=false ) String username, @RequestParam(value = "password",required = false) String password){
+
+
+
+
+
         System.out.println("login :"+username+"-"+password);
         return "success";
     }
