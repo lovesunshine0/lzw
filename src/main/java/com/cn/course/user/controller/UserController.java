@@ -35,11 +35,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/listuser", method = RequestMethod.GET)
-    public String listUser() {
+    public List<User> listUser() {
         System.out.println("--------------------------------------listuser-");
         List<User> users = userService.findAllUserinfo();
         System.out.println(users.size());
-        return "abcde";
+        return users;
     }
 
 

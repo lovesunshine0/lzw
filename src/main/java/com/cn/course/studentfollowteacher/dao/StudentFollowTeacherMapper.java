@@ -2,9 +2,11 @@ package com.cn.course.studentfollowteacher.dao;
 
 import com.cn.course.studentfollowteacher.StudentFollowTeacher;
 import com.cn.course.studentfollowteacher.StudentFollowTeacherExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+@Mapper
 public interface StudentFollowTeacherMapper {
     long countByExample(StudentFollowTeacherExample example);
 
