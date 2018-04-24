@@ -75,7 +75,11 @@ public class StudentService {
         List<Student> list = studentMapper.selectByExample(studentExample);
         if (list == null || list.isEmpty()) {
             return null;
-        } else return list.get(0);
+        } else {
+            Student student = list.get(0);
+            student.setPassword(null);
+            return student;
+        }
     }
 
     public Student findStudentPhone(String telphone) {
@@ -85,7 +89,11 @@ public class StudentService {
         List<Student> list = studentMapper.selectByExample(studentExample);
         if (list == null || list.isEmpty()) {
             return null;
-        } else return list.get(0);
+        } else {
+            Student student = list.get(0);
+            student.setPassword(null);
+            return student;
+        }
     }
 
     public Student findStudentbyid(Integer studentid) {
@@ -96,6 +104,10 @@ public class StudentService {
         StudentExample studentExample = new StudentExample();
         StudentExample.Criteria c = studentExample.createCriteria();
         c.andNameLike(name);
-        return studentMapper.selectByExample(studentExample);
+        List<Student> list = studentMapper.selectByExample(studentExample);
+        for (Student s : list) {
+            s.setPassword(null);
+        }
+        return list;
     }
 }

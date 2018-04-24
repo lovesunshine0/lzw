@@ -35,7 +35,7 @@ public class UserService {
             return null;
         } else {
             User u = list.get(0);
-            u.setPassword("");
+            u.setPassword(null);
             return u;
         }
     }
@@ -49,7 +49,7 @@ public class UserService {
             return null;
         } else {
             User u = list.get(0);
-            u.setPassword("");
+            u.setPassword(null);
             return u;
         }
     }
@@ -57,7 +57,7 @@ public class UserService {
     public List<User> findAllUserinfo() {
         List<User> list = userMapper.selectByExample(null);
         for (User u : list) {
-            u.setPassword("");
+            u.setPassword(null);
         }
         return list;
     }

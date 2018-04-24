@@ -1,10 +1,7 @@
 package com.cn.course.studentfolloworganization.controller;
 
 import com.cn.course.organization.Organization;
-import com.cn.course.studentfolloworganization.StudentFollowOrganization;
-import com.cn.course.studentfolloworganization.StudentFollowOrganizationExample;
 import com.cn.course.studentfolloworganization.service.StudentFollowOrgService;
-import com.cn.course.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("studentfollworg")
+@RequestMapping("studentfollowrg")
 public class StudentFollowOrgController {
     @Autowired
     StudentFollowOrgService service;
@@ -29,7 +26,7 @@ public class StudentFollowOrgController {
         return service.del(studentid, orgid);
     }
 
-    @RequestMapping(value = "findorg", method = RequestMethod.GET)
+    @RequestMapping(value = "findStudentfolloworg", method = RequestMethod.GET)
     public List<Organization> findStudentOrg(@RequestParam("studentid") Integer studentid) {
         return service.findStudentOrg(studentid);
     }
