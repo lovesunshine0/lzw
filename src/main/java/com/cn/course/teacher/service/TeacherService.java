@@ -43,9 +43,19 @@ public class TeacherService {
     }
 
     public Teacher findteacher(Integer id) {
-        Teacher t = mapper.selectByPrimaryKey(id);
-        t.setPassword(null);
-        return t;
+
+        TeacherExample example = new TeacherExample();
+        TeacherExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        criteria.andIsvalidEqualTo(0);
+        List<Teacher> list = mapper.selectByExample(example);
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+        for (Teacher t : list) {
+            t.setPassword(null);
+        }
+        return list.get(0);
     }
 
     public List<Teacher> findTeachersByOrgid(Integer orgid) {

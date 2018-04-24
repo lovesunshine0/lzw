@@ -42,8 +42,13 @@ public class StudentController {
     }
 
     @RequestMapping(value = "loginbyphone", method = RequestMethod.GET)
-    public Student findStudent(@RequestParam("phone") String phone, @RequestParam("password") String password) {
-        return studentService.findStudent(phone, password);
+    public Student findStudentByphone(@RequestParam("phone") String phone, @RequestParam("password") String password) {
+        return studentService.findStudentByphone(phone, password);
+    }
+
+    @RequestMapping(value = "loginbycode", method = RequestMethod.GET)
+    public Student findStudentByCode(@RequestParam("code") String code, @RequestParam("password") String password) {
+        return studentService.findStudentBycode(code, password);
     }
 
     @RequestMapping(value = "findbyid", method = RequestMethod.GET)

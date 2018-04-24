@@ -67,10 +67,25 @@ public class StudentService {
         return studentMapper.updateByExampleSelective(student, studentExample);
     }
 
-    public Student findStudent(String telphone, String password) {
+    public Student findStudentByphone(String telphone, String password) {
         StudentExample studentExample = new StudentExample();
         StudentExample.Criteria c = studentExample.createCriteria();
         c.andPhoneEqualTo(telphone);
+        c.andPasswordEqualTo(Md5Util.MD5(password));
+        List<Student> list = studentMapper.selectByExample(studentExample);
+        if (list == null || list.isEmpty()) {
+            return null;
+        } else {
+            Student student = list.get(0);
+            student.setPassword(null);
+            return student;
+        }
+    }
+
+    public Student findStudentBycode(String code, String password) {
+        StudentExample studentExample = new StudentExample();
+        StudentExample.Criteria c = studentExample.createCriteria();
+        c.andCodeEqualTo(code);
         c.andPasswordEqualTo(Md5Util.MD5(password));
         List<Student> list = studentMapper.selectByExample(studentExample);
         if (list == null || list.isEmpty()) {
@@ -97,7 +112,9 @@ public class StudentService {
     }
 
     public Student findStudentbyid(Integer studentid) {
-        return studentMapper.selectByPrimaryKey(studentid);
+        Student student = studentMapper.selectByPrimaryKey(studentid);
+        student.setPassword(null);
+        return student;
     }
 
     public List<Student> findStudents(String name) {

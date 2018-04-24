@@ -54,9 +54,16 @@ public class StudentFollowTeacherService {
         }
         List<Teacher> teachers = new ArrayList<>();
         for (StudentFollowTeacher s : list) {
-            teachers.add(service.findteacher(s.getTeacherid()));
+            Teacher t = service.findteacher(s.getTeacherid());
+            if (t != null) {//置空一些信息不给学生查看
+                t.setAddress(null);
+                t.setCreatetime(null);
+                t.setMoney(null);
+                t.setAssessor(null);
+                teachers.add(t);
+            }
         }
         return teachers;
     }
-    
+
 }
