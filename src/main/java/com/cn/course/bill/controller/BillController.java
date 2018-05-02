@@ -38,7 +38,7 @@ public class BillController {
 
     @RequestMapping(value = "/findBillbyCourse")
     public List<Bill> findBillByCourse(@RequestParam(value = "course") Integer course) {
-        return billService.findBillByUser(course);
+        return billService.findBillByCourse(course);
     }
 
     @RequestMapping(value = "/findBillbyId")
