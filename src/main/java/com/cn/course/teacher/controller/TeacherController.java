@@ -25,7 +25,7 @@ public class TeacherController {
     TeacherService service;
 
     @RequestMapping(value = "save", method = RequestMethod.GET)
-    public int save(Teacher teacher) {
+    public int save(@RequestParam("teacher") Teacher teacher) {
         return service.save(teacher);
     }
 
